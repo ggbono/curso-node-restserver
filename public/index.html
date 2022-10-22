@@ -25,9 +25,14 @@
 
     <script>
         function handleCredentialResponse(response) {
+
+            let url= (window.location.hostname.includes('localhost')? 
+                'http://locahost:8080/api/auth/google':
+                'https://restserver-curso-node-01.herokuapp.com/api/auth/google'
+            )
             // Google token ID_TOKEN
             const body = { id_token: response.credential }
-            fetch('http://localhost:8080/api/auth/google', {
+            fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json'
